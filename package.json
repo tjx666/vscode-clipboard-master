@@ -93,6 +93,22 @@
             {
                 "command": "clipboardMaster.cutMerge",
                 "title": "Clipboard Master: Cut and Merge to Clipboard"
+            },
+            {
+                "command": "clipboardMaster.copyWithLineNumber",
+                "title": "Clipboard Master: copy with line number"
+            },
+            {
+                "command": "clipboardMaster.copyTextWithoutSyntax",
+                "title": "Clipboard Master: copy text without syntax"
+            },
+            {
+                "command": "clipboardMaster.smartCopy",
+                "title": "Clipboard Master: Smart Copy"
+            },
+            {
+                "command": "clipboardMaster.copyAsMarkdownCodeBlock",
+                "title": "Clipboard Master: Copy as Markdown Code Block"
             }
         ],
         "keybindings": [
