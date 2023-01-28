@@ -2,14 +2,6 @@
 import type { QuickPickItem } from 'vscode';
 import vscode, { window as Window, Range } from 'vscode';
 
-function sleep(ms: number) {
-    return new Promise<void>((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, ms);
-    });
-}
-
 export async function activate(context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('clipboardMaster');
     const formatAfterPaste = config.get('formatAfterPaste', false);
@@ -85,7 +77,6 @@ export async function activate(context: vscode.ExtensionContext) {
                 editBuilder.replace(selection, text);
             }
         });
-        await sleep(100);
 
         // Grab a copy of the current selection array
         const originSelections = editor.selections;
@@ -99,14 +90,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
         // Send the pasted value to the system clipboard.
         await vscode.commands.executeCommand('editor.action.clipboardCopyAction');
-        await sleep(100);
         // Restore the previous selection(s)
         editor.selections = originSelections;
 
         // Format the selection, if enabled
         if (formatAfterPaste) {
             await vscode.commands.executeCommand('editor.action.formatSelection');
-            await sleep(100);
         }
         lastRange = new Range(editor.selection.start, editor.selection.end);
     }
