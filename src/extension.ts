@@ -6,9 +6,7 @@ export async function activate(context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('clipboardMaster');
     const formatAfterPaste = config.get('formatAfterPaste', false);
     const bufferSize = config.get('bufferSize', 10);
-    const systemClipboardText = await vscode.env.clipboard.readText();
-    // read system clipboard text
-    let copyBuffer: string[] = [systemClipboardText];
+    let copyBuffer: string[] = [];
     let pasteIndex = 0;
     let lastRange: Range | undefined;
 
@@ -135,12 +133,18 @@ export async function activate(context: vscode.ExtensionContext) {
                 items.push({ label: (i + 1).toString(), description: element });
             }
 
-            const item = await Window.showQuickPick(items);
-            if (!item) {
+            const selectedItems = await Window.showQuickPick(items, { canPickMany: true });
+            if (!selectedItems?.length) {
                 return;
             }
 
-            doPaste(editor, item.description!);
+            doPaste(
+                editor,
+                selectedItems
+                    .reverse()
+                    .map((i) => i.description!)
+                    .join(''),
+            );
         }),
     );
 
