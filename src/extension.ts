@@ -20,8 +20,8 @@ export async function activate(context: vscode.ExtensionContext) {
     let pasteIndex = 0;
     let lastRange: Range | undefined;
 
-    function newCopyBuffer(e: vscode.TextEditor, merge = false): string {
-        const { document, selection } = e;
+    function newCopyBuffer(editor: vscode.TextEditor, merge = false): string {
+        const { document, selection } = editor;
         let text: string = document.getText(new Range(selection.start, selection.end));
 
         // A copy of a zero length line means copy the whole line.
@@ -129,27 +129,9 @@ export async function activate(context: vscode.ExtensionContext) {
     );
 
     disposables.push(
-        vscode.commands.registerTextEditorCommand(
-            'clipboardMaster.regularPaste',
-            async (editor) => {
-                await vscode.commands.executeCommand('editor.action.clipboardPasteAction');
-                if (formatAfterPaste) {
-                    const start = editor.selection.anchor;
-                    const end = editor.selection.anchor;
-                    const selection = new vscode.Selection(
-                        start.line,
-                        start.character,
-                        end.line,
-                        end.character,
-                    );
-                    editor.selection = selection;
-                    await vscode.commands.executeCommand('editor.action.formatSelection');
-                    await sleep(100);
-                    const newPos = editor.selection.active;
-                    editor.selection = new vscode.Selection(newPos, newPos);
-                }
-            },
-        ),
+        vscode.commands.registerTextEditorCommand('clipboardMaster.regularPaste', async () => {
+            await vscode.commands.executeCommand('editor.action.clipboardPasteAction');
+        }),
     );
 
     disposables.push(
