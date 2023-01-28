@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/no-array-push-push */
 import type { QuickPickItem } from 'vscode';
 import vscode, { window as Window, Range } from 'vscode';
+
 import { getEOL } from '../utils/editor';
 
 const config = vscode.workspace.getConfiguration('clipboardMaster');

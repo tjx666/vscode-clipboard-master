@@ -1,4 +1,5 @@
 import vscode from 'vscode';
+
 import copyAsMarkdownCodeBlock from './features/copyAsMarkdownCodeBlock';
 import copyTextWithoutSyntax from './features/copyTextWithoutSyntax';
 import copyWithLineNumber from './features/copyWithLineNumber';
