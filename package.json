@@ -1,8 +1,8 @@
 {
-    "name": "awesome-vscode-extension-boilerplate",
-    "displayName": "Awesome VSCode Extension Boilerplate",
+    "name": "clipboard-master",
+    "displayName": "Clipboard Master",
     "version": "0.0.1",
-    "description": "An awesome vscode extension boilerplate",
+    "description": "VSCode Copy/Paste Enhancer",
     "publisher": "YuTengjing",
     "preview": true,
     "author": {
@@ -11,18 +11,19 @@
         "email": "ytj2713151713@gmail.com"
     },
     "license": "SEE LICENSE IN LICENSE",
-    "homepage": "https://github.com/tjx666/awesome-vscode-extension-boilerplate/blob/master/README.md",
+    "homepage": "https://github.com/tjx666/vscode-clipboard-master/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/tjx666/awesome-vscode-extension-boilerplate"
+        "url": "https://github.com/tjx666/vscode-clipboard-master"
     },
     "bugs": {
-        "url": "https://github.com/tjx666/awesome-vscode-extension-boilerplate/issues",
+        "url": "https://github.com/tjx666/vscode-clipboard-master/issues",
         "email": "ytj2713151713@gmail.com"
     },
     "keywords": [
-        "boilerplate",
-        "template"
+        "clipboard",
+        "copy",
+        "paste"
     ],
     "categories": [
         "Other"
@@ -36,17 +37,100 @@
         {
             "url": "https://img.shields.io/badge/PRs-welcome-brightgreen.svg",
             "description": "PRs Welcome",
-            "href": "https://github.com/tjx666/awesome-vscode-extension-boilerplate"
+            "href": "https://github.com/tjx666/vscode-clipboard-master"
         }
     ],
     "activationEvents": [
-        "onCommand:awesome-vscode-extension-boilerplate.helloWorld"
+        "onStartupFinished"
     ],
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Clipboard Master",
+            "properties": {
+                "clipboardMaster.bufferSize": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 10,
+                    "description": "Maximum number of item to keep in the copy buffer"
+                },
+                "clipboardMaster.formatAfterPaste": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Specify if text should be formatted after pasting"
+                }
+            }
+        },
         "commands": [
             {
-                "command": "awesome-vscode-extension-boilerplate.helloWorld",
-                "title": "Hello World"
+                "command": "clipboardMaster.copy",
+                "title": "Clipboard Master: Copy"
+            },
+            {
+                "command": "clipboardMaster.cut",
+                "title": "Clipboard Master: Cut"
+            },
+            {
+                "command": "clipboardMaster.list",
+                "title": "Clipboard Master: List Buffer"
+            },
+            {
+                "command": "clipboardMaster.paste",
+                "title": "Clipboard Master: Paste"
+            },
+            {
+                "command": "clipboardMaster.regularPaste",
+                "title": "Clipboard Master: Regular Paste"
+            },
+            {
+                "command": "clipboardMaster.clearBuffer",
+                "title": "Clipboard Master: Clear Buffer"
+            },
+            {
+                "command": "clipboardMaster.copyMerge",
+                "title": "Clipboard Master: Copy and Merge to Clipboard"
+            },
+            {
+                "command": "clipboardMaster.cutMerge",
+                "title": "Clipboard Master: Cut and Merge to Clipboard"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "ctrl+c",
+                "mac": "cmd+c",
+                "command": "clipboardMaster.copy",
+                "when": "editorTextFocus"
+            },
+            {
+                "key": "ctrl+x",
+                "mac": "cmd+x",
+                "command": "clipboardMaster.cut",
+                "when": "editorTextFocus"
+            },
+            {
+                "key": "shift+ctrl+v",
+                "mac": "shift+cmd+v",
+                "command": "clipboardMaster.paste",
+                "when": "editorTextFocus && editorLangId != 'markdown'"
+            },
+            {
+                "key": "ctrl+v",
+                "mac": "cmd+v",
+                "command": "clipboardMaster.regularPaste",
+                "when": "editorTextFocus"
+            },
+            {
+                "key": "shift+ctrl+c",
+                "mac": "shift+cmd+c",
+                "command": "clipboardMaster.copyMerge",
+                "when": "editorTextFocus"
+            },
+            {
+                "key": "shift+ctrl+x",
+                "mac": "shift+cmd+x",
+                "command": "clipboardMaster.cutMerge",
+                "when": "editorTextFocus"
             }
         ]
     },
