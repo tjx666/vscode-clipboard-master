@@ -20,24 +20,24 @@ I just migrate code from [Multiple clipboards for VSCode](https://github.com/ste
 
 ### copy with line number
 
-You can use command: `FE Helper: copy with line number` to copy some content with line number.
+You can use command: `Clipboard Master: copy with line number` to copy some content with line number.
 
 ![copy with line number](https://github.com/tjx666/vscode-fe-helper/raw/master/images/copy_with_line_number.gif?raw=true)
 
 ### copy text without syntax
 
-You can use command: `FE Helper: copy text without syntax` to copy selected text without syntax.
+You can use command: `Clipboard Master: copy text without syntax` to copy selected text without syntax.
 
 ### smart copy
 
-with command `FE Helper: Smart Copy`, you can:
+with command `Clipboard Master: Smart Copy`, you can:
 
 - copy without syntax
 - auto correct indent because some external editor can't deal with indent of paste code correctly
 
 ### copy as markdown code block
 
-with command `FE Helper: Copy as Markdown Code Block`, you can:
+with command `Clipboard Master: Copy as Markdown Code Block`, you can:
 
 - copy without syntax
 - auto correct indent because some external editor can't deal with indent of paste code correctly
