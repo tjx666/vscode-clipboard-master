@@ -56,7 +56,7 @@ export function getIndentCorrectText(
     return resultLines.join(eol);
 }
 
-export default async function smartCopy(editor: TextEditor): Promise<void> {
+export async function smartCopy(editor: TextEditor): Promise<void> {
     const { document, selections } = editor;
     const eol = getEOL(document);
     const indentChar = getIndentChar(

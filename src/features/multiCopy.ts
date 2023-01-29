@@ -40,7 +40,7 @@ function newCopyBuffer(editor: vscode.TextEditor, merge = false): string {
 
 const multiCopyCommands: { dispose(): any }[] = [];
 multiCopyCommands.push(
-    vscode.commands.registerTextEditorCommand('clipboardMaster.clearBuffer', () => {
+    vscode.commands.registerCommand('clipboardMaster.clearBuffer', () => {
         copyBuffer = [];
         pasteIndex = 0;
     }),
@@ -123,7 +123,7 @@ multiCopyCommands.push(
 );
 
 multiCopyCommands.push(
-    vscode.commands.registerTextEditorCommand('clipboardMaster.list', async (editor) => {
+    vscode.commands.registerCommand('clipboardMaster.list', async (editor) => {
         if (copyBuffer.length === 0) {
             Window.setStatusBarMessage('Clipboard Master: Nothing to paste', 3000);
             return;

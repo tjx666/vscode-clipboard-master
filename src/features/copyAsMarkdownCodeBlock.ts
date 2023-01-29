@@ -5,7 +5,7 @@ import { getIndentCorrectText } from './smartCopy';
 import { VSC_MD_LANG_MAP } from '../utils/constants';
 import { getEOL, getIndentChar } from '../utils/editor';
 
-export default async function copyAsMarkdownCodeBlock(editor: TextEditor): Promise<void> {
+export async function copyAsMarkdownCodeBlock(editor: TextEditor): Promise<void> {
     const { document, selections } = editor;
     const eol = getEOL(document);
     const indentChar = getIndentChar(

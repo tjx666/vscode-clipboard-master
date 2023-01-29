@@ -4,7 +4,7 @@
 import type { TextEditor } from 'vscode';
 import vscode from 'vscode';
 
-export default async function copyTextWithoutSyntax(editor: TextEditor): Promise<void> {
+export async function copyTextWithoutSyntax(editor: TextEditor): Promise<void> {
     if (editor.selections.length === 1) {
         const { document, selection } = editor;
         if (!document) return;

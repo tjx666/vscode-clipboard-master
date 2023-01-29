@@ -1,26 +1,36 @@
 import vscode from 'vscode';
 
-import copyAsMarkdownCodeBlock from './features/copyAsMarkdownCodeBlock';
-import copyTextWithoutSyntax from './features/copyTextWithoutSyntax';
-import copyWithLineNumber from './features/copyWithLineNumber';
 import { multiCopyCommands } from './features/multiCopy';
-import smartCopy from './features/smartCopy';
 
 export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         ...multiCopyCommands,
         vscode.commands.registerTextEditorCommand(
             'clipboardMaster.copyWithLineNumber',
-            copyWithLineNumber,
+            (editor) => {
+                import('./features/copyWithLineNumber').then((mod) =>
+                    mod.copyWithLineNumber(editor),
+                );
+            },
         ),
         vscode.commands.registerTextEditorCommand(
             'clipboardMaster.copyTextWithoutSyntax',
-            copyTextWithoutSyntax,
+            (editor) => {
+                import('./features/copyTextWithoutSyntax').then((mod) =>
+                    mod.copyTextWithoutSyntax(editor),
+                );
+            },
         ),
-        vscode.commands.registerTextEditorCommand('clipboardMaster.smartCopy', smartCopy),
+        vscode.commands.registerTextEditorCommand('clipboardMaster.smartCopy', (editor) => {
+            import('./features/smartCopy').then((mod) => mod.smartCopy(editor));
+        }),
         vscode.commands.registerTextEditorCommand(
             'clipboardMaster.copyAsMarkdownCodeBlock',
-            copyAsMarkdownCodeBlock,
+            (editor) => {
+                import('./features/copyAsMarkdownCodeBlock').then((mod) =>
+                    mod.copyAsMarkdownCodeBlock(editor),
+                );
+            },
         ),
     );
 }
