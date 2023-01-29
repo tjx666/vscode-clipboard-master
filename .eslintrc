@@ -8,6 +8,7 @@
                 "groups": ["builtin", "external", ["parent", "sibling", "index"]],
                 "newlines-between": "always"
             }
-        ]
+        ],
+        "security/detect-object-injection": "off"
     }
 }
