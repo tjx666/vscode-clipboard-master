@@ -1,7 +1,7 @@
 {
     "name": "clipboard-master",
     "displayName": "Clipboard Master",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "VSCode Copy/Paste Enhancer",
     "publisher": "YuTengjing",
     "preview": true,
@@ -150,9 +150,6 @@
             }
         ]
     },
-    "eslintConfig": {
-        "extends": "@yutengjing/eslint-config-typescript"
-    },
     "scripts": {
         "vscode:prepublish": "pnpm esbuild:base --minify",
         "preinstall": "npx only-allow pnpm",
@@ -178,7 +175,7 @@
         "@yutengjing/prettier-config": "^0.0.1",
         "esbuild": "^0.17.5",
         "esbuild-visualizer": "^0.4.0",
-        "eslint": "^8.32.0",
+        "eslint": "^8.33.0",
         "format-imports": "^3.2.2",
         "glob": "^8.1.0",
         "mocha": "^10.2.0",
