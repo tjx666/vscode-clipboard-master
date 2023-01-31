@@ -1,3 +1,10 @@
+## 0.0.4 - 2023-02-01
+
+### Fixed
+
+- when disable multiCopy feature, shouldn't show the commands in command plate
+- when disable multiCopy feature, shouldn't override default copy/paste shortcuts
+
 ## 0.0.3 - 2023-02-01
 
 ### Added
