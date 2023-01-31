@@ -9,10 +9,16 @@ class Configuration {
     async update(context: vscode.ExtensionContext) {
         const latestConfiguration = vscode.workspace.getConfiguration('clipboardMaster');
         this.enableMultiCopy = latestConfiguration.get('enableMultiCopy')!;
+        const enableMultiCopyBefore = this.enableMultiCopy;
         if (!this.initializedMultiCopy && this.enableMultiCopy) {
             const { multiCopyCommands } = await import('../features/multiCopy');
             context.subscriptions.push(...multiCopyCommands);
+            vscode.commands.executeCommand('setContext', 'clipboardMaster.enableMultiCopy', true);
             this.initializedMultiCopy = true;
+        }
+
+        if (enableMultiCopyBefore && !this.enableMultiCopy) {
+            vscode.commands.executeCommand('setContext', 'clipboardMaster.enableMultiCopy', false);
         }
 
         this.bufferSize = latestConfiguration.get('bufferSize')!;
