@@ -1,9 +1,9 @@
 import type { TextEditor } from 'vscode';
 import vscode, { Position, Range } from 'vscode';
 
-import { getIndentCorrectText } from './smartCopy';
 import { VSC_MD_LANG_MAP } from '../utils/constants';
 import { getEOL, getIndentChar } from '../utils/editor';
+import { getIndentCorrectText } from './smartCopy';
 
 export async function copyAsMarkdownCodeBlock(editor: TextEditor): Promise<void> {
     const { document, selections } = editor;

@@ -1,10 +1,9 @@
 import vscode from 'vscode';
 
-import { multiCopyCommands } from './features/multiCopy';
+import configuration from './utils/configuration';
 
 export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
-        ...multiCopyCommands,
         vscode.commands.registerTextEditorCommand(
             'clipboardMaster.copyWithLineNumber',
             (editor) => {
@@ -33,4 +32,9 @@ export async function activate(context: vscode.ExtensionContext) {
             },
         ),
     );
+
+    configuration.update(context);
+    vscode.workspace.onDidChangeConfiguration(() => {
+        configuration.update(context);
+    }, context.subscriptions);
 }

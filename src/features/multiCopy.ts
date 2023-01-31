@@ -2,11 +2,9 @@
 import type { QuickPickItem } from 'vscode';
 import vscode, { window as Window, Range } from 'vscode';
 
+import configuration from '../utils/configuration';
 import { getEOL } from '../utils/editor';
 
-const config = vscode.workspace.getConfiguration('clipboardMaster');
-const formatAfterPaste = config.get('formatAfterPaste', false);
-const bufferSize = config.get('bufferSize', 10);
 let copyBuffer: string[] = [];
 let pasteIndex = 0;
 let lastRange: Range | undefined;
@@ -29,8 +27,8 @@ function newCopyBuffer(editor: vscode.TextEditor, merge = false): string {
     } else {
         if (text.trim().length > 0 && !copyBuffer.includes(text)) {
             copyBuffer.unshift(text);
-            if (copyBuffer.length > bufferSize) {
-                copyBuffer = copyBuffer.slice(0, bufferSize);
+            if (copyBuffer.length > configuration.bufferSize) {
+                copyBuffer = copyBuffer.slice(0, configuration.bufferSize);
             }
         }
     }
@@ -93,7 +91,7 @@ async function doPaste(editor: vscode.TextEditor, text: string) {
     editor.selections = originSelections;
 
     // Format the selection, if enabled
-    if (formatAfterPaste) {
+    if (configuration.formatAfterPaste) {
         await vscode.commands.executeCommand('editor.action.formatSelection');
     }
     lastRange = new Range(editor.selection.start, editor.selection.end);
