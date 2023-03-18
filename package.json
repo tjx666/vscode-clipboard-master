@@ -1,7 +1,7 @@
 {
     "name": "clipboard-master",
     "displayName": "Clipboard Master",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "VSCode Copy/Paste Enhancer",
     "publisher": "YuTengjing",
     "preview": true,
