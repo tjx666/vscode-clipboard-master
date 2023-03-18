@@ -197,12 +197,13 @@
         "clear": "rimraf ./out",
         "esbuild:base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
         "esbuild:watch": "pnpm esbuild:base --sourcemap --watch",
-        "esbuild:analyze": "pnpm esbuild:base --minify --metafile=meta.json && esbuild-visualizer --metadata ./meta.json --open",
         "compile:test": "pnpm clear && tsc -p ./test/tsconfig.json",
         "lint": "eslint src --ext ts",
         "test": "pnpm compile:test && node ./out/test/runTests.js",
         "package": "vsce package --no-dependencies",
-        "publish": "vsce publish --no-dependencies"
+        "release": "bumpp -c \"release: v%s\" package.json",
+        "publish:vs-marketplace": "vsce publish --no-dependencies",
+        "publish:open-vsx": "ovsx publish --no-dependencies"
     },
     "devDependencies": {
         "@types/glob": "^8.1.0",
