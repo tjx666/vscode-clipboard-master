@@ -211,17 +211,19 @@
         "@types/node": "^18.15.3",
         "@types/vscode": "^1.76.0",
         "@vscode/test-electron": "^2.3.0",
+        "@vscode/vsce": "^2.18.0",
         "@yutengjing/eslint-config-typescript": "^0.2.6",
         "@yutengjing/prettier-config": "^0.0.1",
+        "bumpp": "^9.0.0",
         "esbuild": "^0.17.12",
         "esbuild-visualizer": "^0.4.0",
         "eslint": "^8.36.0",
         "format-imports": "^3.2.2",
         "glob": "^9.3.0",
         "mocha": "^10.2.0",
+        "ovsx": "^0.8.0",
         "prettier": "^2.8.4",
         "rimraf": "^4.4.0",
-        "typescript": "^5.0.2",
-        "vsce": "^2.15.0"
+        "typescript": "^5.0.2"
     }
 }
