@@ -1,3 +1,9 @@
+## 0.0.5 - 2023-03-19
+
+### Changed
+
+- just upgrade deps and some code refactor
+
 ## 0.0.4 - 2023-02-01
 
 ### Fixed
