@@ -24,19 +24,23 @@ export async function activate(context: vscode.ExtensionContext) {
     };
 
     registerTextEditorCommand('copyWithLineNumber', (editor) => {
-        import('./features/copyWithLineNumber').then((mod) => mod.copyWithLineNumber(editor));
+        return import('./features/copyWithLineNumber').then((mod) =>
+            mod.copyWithLineNumber(editor),
+        );
     });
 
     registerTextEditorCommand('copyTextWithoutSyntax', (editor) => {
-        import('./features/copyTextWithoutSyntax').then((mod) => mod.copyTextWithoutSyntax(editor));
+        return import('./features/copyTextWithoutSyntax').then((mod) =>
+            mod.copyTextWithoutSyntax(editor),
+        );
     });
 
     registerTextEditorCommand('smartCopy', (editor) => {
-        import('./features/smartCopy').then((mod) => mod.smartCopy(editor));
+        return import('./features/smartCopy').then((mod) => mod.smartCopy(editor));
     });
 
     registerTextEditorCommand('copyAsMarkdownCodeBlock', (editor) => {
-        import('./features/copyAsMarkdownCodeBlock').then((mod) =>
+        return import('./features/copyAsMarkdownCodeBlock').then((mod) =>
             mod.copyAsMarkdownCodeBlock(editor),
         );
     });
@@ -44,7 +48,7 @@ export async function activate(context: vscode.ExtensionContext) {
     configuration.update(context);
     vscode.workspace.onDidChangeConfiguration(
         () => {
-            configuration.update(context);
+            return configuration.update(context);
         },
         null,
         context.subscriptions,

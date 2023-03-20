@@ -1,3 +1,9 @@
+## 0.0.7 - 2023-03-20
+
+### Changed
+
+- some code refactor
+
 ## 0.0.6 - 2023-03-19
 
 ### Changed

@@ -46,25 +46,25 @@ multiCopyCommands.push(
 multiCopyCommands.push(
     vscode.commands.registerTextEditorCommand('clipboardMaster.copyMerge', (editor) => {
         newCopyBuffer(editor, true);
-        vscode.commands.executeCommand('editor.action.clipboardCopyAction');
+        return vscode.commands.executeCommand('editor.action.clipboardCopyAction');
     }),
 );
 multiCopyCommands.push(
     vscode.commands.registerTextEditorCommand('clipboardMaster.copy', (editor) => {
         newCopyBuffer(editor);
-        vscode.commands.executeCommand('editor.action.clipboardCopyAction');
+        return vscode.commands.executeCommand('editor.action.clipboardCopyAction');
     }),
 );
 multiCopyCommands.push(
     vscode.commands.registerTextEditorCommand('clipboardMaster.cutMerge', (editor) => {
         newCopyBuffer(editor, true);
-        vscode.commands.executeCommand('editor.action.clipboardCutAction');
+        return vscode.commands.executeCommand('editor.action.clipboardCutAction');
     }),
 );
 multiCopyCommands.push(
     vscode.commands.registerTextEditorCommand('clipboardMaster.cut', (editor) => {
         newCopyBuffer(editor);
-        vscode.commands.executeCommand('editor.action.clipboardCutAction');
+        return vscode.commands.executeCommand('editor.action.clipboardCutAction');
     }),
 );
 
@@ -110,13 +110,13 @@ multiCopyCommands.push(
             pasteIndex = ++pasteIndex < copyBuffer.length ? pasteIndex : 0;
         }
 
-        doPaste(editor, copyBuffer[pasteIndex]);
+        return doPaste(editor, copyBuffer[pasteIndex]);
     }),
 );
 
 multiCopyCommands.push(
     vscode.commands.registerTextEditorCommand('clipboardMaster.regularPaste', async () => {
-        await vscode.commands.executeCommand('editor.action.clipboardPasteAction');
+        return vscode.commands.executeCommand('editor.action.clipboardPasteAction');
     }),
 );
 
@@ -137,7 +137,7 @@ multiCopyCommands.push(
             return;
         }
 
-        doPaste(
+        return doPaste(
             editor,
             selectedItems
                 .reverse()
