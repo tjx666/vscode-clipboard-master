@@ -1,3 +1,10 @@
+## 0.0.8 - 2023-04-27
+
+### Changed
+
+- build: update deps
+- perf: only update config when change extension self config
+
 ## 0.0.7 - 2023-03-20
 
 ### Changed
