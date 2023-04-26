@@ -5,6 +5,17 @@ import configuration from './utils/configuration';
 export async function activate(context: vscode.ExtensionContext) {
     const { commands } = vscode;
 
+    configuration.update(context);
+    vscode.workspace.onDidChangeConfiguration(
+        (event) => {
+            if (event.affectsConfiguration('clipboardMaster')) {
+                configuration.update(context);
+            }
+        },
+        null,
+        context.subscriptions,
+    );
+
     const registerTextEditorCommand = (
         commandName: string,
         callback: (
@@ -44,13 +55,4 @@ export async function activate(context: vscode.ExtensionContext) {
             mod.copyAsMarkdownCodeBlock(editor),
         );
     });
-
-    configuration.update(context);
-    vscode.workspace.onDidChangeConfiguration(
-        () => {
-            return configuration.update(context);
-        },
-        null,
-        context.subscriptions,
-    );
 }
